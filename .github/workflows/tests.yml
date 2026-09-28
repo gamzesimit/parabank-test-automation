@@ -22,7 +22,9 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - name: Check formatting
+        run: npx prettier --check .
+      - run: npx playwright install --with-deps chromium firefox
       - name: Wait for ParaBank
         run: |
           for i in $(seq 1 40); do
