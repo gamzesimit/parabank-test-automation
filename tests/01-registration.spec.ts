@@ -4,7 +4,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { buildUser } from '../fixtures/user';
 
 test.describe('Customer registration', () => {
-  test('a new customer can register and is signed in straight away', async ({ page }) => {
+  test('@smoke a new customer can register and is signed in straight away', async ({ page }) => {
     const user = buildUser();
     const register = new RegisterPage(page);
     await register.goto();
