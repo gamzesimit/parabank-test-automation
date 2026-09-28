@@ -5,10 +5,7 @@ title: ''
 labels: defect
 ---
 
-**Steps**
-1.
-2.
-3.
+**Steps** 1. 2. 3.
 
 **Result**
 What the application did, with the figures it showed.
