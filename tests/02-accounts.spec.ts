@@ -3,6 +3,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { AccountsOverviewPage } from '../pages/AccountsOverviewPage';
 import { OpenAccountPage } from '../pages/OpenAccountPage';
 import { buildUser } from '../fixtures/user';
+import { OPENING_DEPOSIT } from '../fixtures/amounts';
 
 test.describe('Opening accounts', () => {
   test('opening a savings account moves the required deposit out of the funding account', async ({
@@ -27,8 +28,8 @@ test.describe('Opening accounts', () => {
     const opened = await overview.balanceOf(newAccount);
 
     // ParaBank funds a new account with a 100.00 minimum deposit
-    expect(opened).toBe(100);
-    expect(Number((before - after).toFixed(2))).toBe(100);
+    expect(opened).toBe(OPENING_DEPOSIT);
+    expect(Number((before - after).toFixed(2))).toBe(OPENING_DEPOSIT);
   });
 
   test('the overview total equals the sum of the account balances', async ({ page }) => {
