@@ -2,9 +2,13 @@ import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage {
-  constructor(page: Page) { super(page); }
+  constructor(page: Page) {
+    super(page);
+  }
 
-  async goto() { await this.gotoStable('index.htm'); }
+  async goto() {
+    await this.gotoStable('index.htm');
+  }
 
   async login(username: string, password: string) {
     await this.page.fill('input[name="username"]', username);
@@ -16,5 +20,7 @@ export class LoginPage extends BasePage {
     await expect(this.page.locator('#leftPanel')).toContainText('Log Out');
   }
 
-  async logout() { await this.openMenu('Log Out'); }
+  async logout() {
+    await this.openMenu('Log Out');
+  }
 }

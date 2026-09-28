@@ -3,4 +3,4 @@ services:
     image: parasoft/parabank:latest
     container_name: parabank
     ports:
-      - "8081:8080"
+      - '8081:8080'

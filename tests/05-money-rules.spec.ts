@@ -59,13 +59,16 @@ test.describe('Rules about the sign of an amount', () => {
     await transfer.goto();
     await transfer.transfer('-250.00', account, account);
     const result = await transfer.resultText();
-    expect(result, 'the form must tell the customer why nothing happened')
-      .toMatch(/invalid|must be|error|greater than/i);
+    expect(result, 'the form must tell the customer why nothing happened').toMatch(
+      /invalid|must be|error|greater than/i,
+    );
   });
 });
 
 test.describe('Rules that already hold', () => {
-  test('a payment inside the balance leaves the account by exactly that amount', async ({ page }) => {
+  test('a payment inside the balance leaves the account by exactly that amount', async ({
+    page,
+  }) => {
     const { overview, account } = await newCustomer(page);
     const before = await overview.balanceOf(account);
 

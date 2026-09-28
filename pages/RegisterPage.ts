@@ -3,9 +3,13 @@ import { BasePage } from './BasePage';
 import { TestUser } from '../fixtures/user';
 
 export class RegisterPage extends BasePage {
-  constructor(page: Page) { super(page); }
+  constructor(page: Page) {
+    super(page);
+  }
 
-  async goto() { await this.gotoStable('register.htm'); }
+  async goto() {
+    await this.gotoStable('register.htm');
+  }
 
   async register(u: TestUser) {
     const f = async (name: string, value: string) =>
