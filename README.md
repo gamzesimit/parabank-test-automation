@@ -70,3 +70,13 @@ report as an artifact for fourteen days.
 - Cover the loan request and find transactions screens.
 - Cover the REST API, where the same amount rules can be checked without a browser.
 - Add Firefox and WebKit to the project list.
+
+## The smoke set
+
+Three tests carry a `@smoke` tag: a customer can register, a transfer moves the
+stated amount, and a bill payment leaves the account by the amount entered. They
+are the shortest run that proves money still moves correctly.
+
+```bash
+npm run test:smoke
+```
