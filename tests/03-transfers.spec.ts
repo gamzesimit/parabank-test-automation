@@ -4,6 +4,7 @@ import { AccountsOverviewPage } from '../pages/AccountsOverviewPage';
 import { OpenAccountPage } from '../pages/OpenAccountPage';
 import { TransferFundsPage } from '../pages/TransferFundsPage';
 import { buildUser } from '../fixtures/user';
+import { AMOUNTS } from '../fixtures/amounts';
 
 async function customerWithTwoAccounts(page: any) {
   const user = buildUser();
@@ -30,7 +31,7 @@ test.describe('Transferring funds between own accounts', () => {
 
     const transfer = new TransferFundsPage(page);
     await transfer.goto();
-    await transfer.transfer('25.00', first, second);
+    await transfer.transfer(AMOUNTS.ordinary, first, second);
     await expect(page.locator('#rightPanel')).toContainText('Transfer Complete');
 
     await overview.goto();
@@ -51,7 +52,7 @@ test.describe('Transferring funds between own accounts', () => {
 
     const transfer = new TransferFundsPage(page);
     await transfer.goto();
-    await transfer.transfer('10.37', first, second);
+    await transfer.transfer(AMOUNTS.withCents, first, second);
     await expect(page.locator('#rightPanel')).toContainText('Transfer Complete');
 
     await overview.goto();
@@ -77,7 +78,7 @@ test.describe('Transferring funds between own accounts', () => {
     const { first, second } = await customerWithTwoAccounts(page);
     const transfer = new TransferFundsPage(page);
     await transfer.goto();
-    await transfer.transfer('-50.00', first, second);
+    await transfer.transfer(AMOUNTS.negative, first, second);
     const result = await transfer.resultText();
     expect(result, 'a negative transfer must not report success').not.toMatch(/Transfer Complete/i);
   });
@@ -86,7 +87,7 @@ test.describe('Transferring funds between own accounts', () => {
     const { first, second } = await customerWithTwoAccounts(page);
     const transfer = new TransferFundsPage(page);
     await transfer.goto();
-    await transfer.transfer('0.00', first, second);
+    await transfer.transfer(AMOUNTS.zero, first, second);
     const result = await transfer.resultText();
     expect(result, 'a zero transfer must not report success').not.toMatch(/Transfer Complete/i);
   });
