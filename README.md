@@ -1,5 +1,7 @@
 # ParaBank test automation
 
+[![tests](https://github.com/gamzesimit/parabank-test-automation/actions/workflows/tests.yml/badge.svg)](https://github.com/gamzesimit/parabank-test-automation/actions/workflows/tests.yml)
+
 A Playwright suite for a retail online banking application, written around the
 rules that protect the balance rather than around the screens.
 
