@@ -15,10 +15,21 @@ export class RequestLoanPage extends BasePage {
     await this.page.fill('#downPayment', downPayment);
     await this.page.selectOption('#fromAccountId', fromAccount);
     await this.page.locator('input[value="Apply Now"]').click();
+    // the decision arrives after a request, so wait for the outcome panel
+    await this.page
+      .locator('#loanRequestApproved, #loanRequestDenied, #requestLoanError, .error')
+      .first()
+      .waitFor({ state: 'visible', timeout: 20_000 })
+      .catch(() => undefined);
   }
 
   async decision(): Promise<string> {
-    return (await this.page.locator('#loanStatus, #loanRequestApproved, #loanRequestDenied').first().innerText()).trim();
+    return (
+      await this.page
+        .locator('#loanStatus, #loanRequestApproved, #loanRequestDenied')
+        .first()
+        .innerText()
+    ).trim();
   }
 
   async resultText(): Promise<string> {
