@@ -1,0 +1,22 @@
+{
+  "name": "parabank-test-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report",
+    "up": "docker compose up -d",
+    "down": "docker compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "Playwright test suite for a retail online banking application, focused on the rules that protect the balance",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

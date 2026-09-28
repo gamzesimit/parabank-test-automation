@@ -1,0 +1,42 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      parabank:
+        image: parasoft/parabank:latest
+        ports:
+          - 8081:8080
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Wait for ParaBank
+        run: |
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -L http://localhost:8081/parabank/index.htm || true)
+            if [ "$code" = "200" ]; then echo "ready"; exit 0; fi
+            sleep 10
+          done
+          echo "ParaBank did not become ready"; exit 1
+      - run: npx playwright test
+        env:
+          BASE_URL: http://localhost:8081/parabank/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
