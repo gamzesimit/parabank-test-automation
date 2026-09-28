@@ -5,7 +5,7 @@ import { BillPayPage } from '../pages/BillPayPage';
 import { buildUser } from '../fixtures/user';
 
 test.describe('Paying a bill', () => {
-  test('a payment leaves the account by exactly the amount entered', async ({ page }) => {
+  test('@smoke a payment leaves the account by exactly the amount entered', async ({ page }) => {
     const register = new RegisterPage(page);
     await register.goto();
     await register.register(buildUser());

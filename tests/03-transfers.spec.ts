@@ -21,7 +21,7 @@ async function customerWithTwoAccounts(page: any) {
 }
 
 test.describe('Transferring funds between own accounts', () => {
-  test('a transfer moves exactly the stated amount and leaves the total unchanged', async ({
+  test('@smoke a transfer moves exactly the stated amount and leaves the total unchanged', async ({
     page,
   }) => {
     const { first, second, overview } = await customerWithTwoAccounts(page);
