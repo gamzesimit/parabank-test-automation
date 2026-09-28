@@ -2,9 +2,13 @@ import { Page } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class BillPayPage extends BasePage {
-  constructor(page: Page) { super(page); }
+  constructor(page: Page) {
+    super(page);
+  }
 
-  async goto() { await this.gotoStable('billpay.htm'); }
+  async goto() {
+    await this.gotoStable('billpay.htm');
+  }
 
   async pay(amount: string, fromAccount: string, payeeAccount = '54321') {
     await this.page.fill('input[name="payee.name"]', 'City Utilities');

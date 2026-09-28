@@ -23,18 +23,18 @@ loads, reports success, and the ledger is wrong. The cases below were chosen
 because each one has a single correct arithmetic answer that can be checked
 without knowing anything about the implementation.
 
-| Case | Rule under test | Why it matters |
-|---|---|---|
-| Open an account | The opening deposit leaves the funding account and arrives in the new one | A deposit that is debited twice, or not at all, is a reconciliation break on day one |
-| Overview total | The printed total equals the sum of the rows | A total computed separately from the rows can drift |
-| Transfer, round amount | Exactly the amount leaves one account and arrives in the other | The basic double entry rule |
-| Transfer, amount with cents | 10.37 moves as 10.37, not 10.00 or 10.40 | Rounding errors accumulate silently across thousands of transactions |
-| Transfer, above balance | Refused | A customer cannot spend money it does not hold |
-| Transfer, negative | Refused, with a message | A minus sign must not reverse the direction of money |
-| Transfer, zero | Refused | An empty transaction should not enter the ledger |
-| Bill payment, inside balance | Exactly the amount leaves the account | The basic case |
-| Bill payment, above balance | Refused | See PB-002 |
-| Bill payment, negative | Refused | See PB-003 |
+| Case                         | Rule under test                                                           | Why it matters                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Open an account              | The opening deposit leaves the funding account and arrives in the new one | A deposit that is debited twice, or not at all, is a reconciliation break on day one |
+| Overview total               | The printed total equals the sum of the rows                              | A total computed separately from the rows can drift                                  |
+| Transfer, round amount       | Exactly the amount leaves one account and arrives in the other            | The basic double entry rule                                                          |
+| Transfer, amount with cents  | 10.37 moves as 10.37, not 10.00 or 10.40                                  | Rounding errors accumulate silently across thousands of transactions                 |
+| Transfer, above balance      | Refused                                                                   | A customer cannot spend money it does not hold                                       |
+| Transfer, negative           | Refused, with a message                                                   | A minus sign must not reverse the direction of money                                 |
+| Transfer, zero               | Refused                                                                   | An empty transaction should not enter the ledger                                     |
+| Bill payment, inside balance | Exactly the amount leaves the account                                     | The basic case                                                                       |
+| Bill payment, above balance  | Refused                                                                   | See PB-002                                                                           |
+| Bill payment, negative       | Refused                                                                   | See PB-003                                                                           |
 
 ## Boundary values
 

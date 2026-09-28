@@ -5,7 +5,9 @@ import { OpenAccountPage } from '../pages/OpenAccountPage';
 import { buildUser } from '../fixtures/user';
 
 test.describe('Opening accounts', () => {
-  test('opening a savings account moves the required deposit out of the funding account', async ({ page }) => {
+  test('opening a savings account moves the required deposit out of the funding account', async ({
+    page,
+  }) => {
     const user = buildUser();
     const register = new RegisterPage(page);
     await register.goto();

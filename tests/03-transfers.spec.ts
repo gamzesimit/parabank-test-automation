@@ -21,7 +21,9 @@ async function customerWithTwoAccounts(page: any) {
 }
 
 test.describe('Transferring funds between own accounts', () => {
-  test('a transfer moves exactly the stated amount and leaves the total unchanged', async ({ page }) => {
+  test('a transfer moves exactly the stated amount and leaves the total unchanged', async ({
+    page,
+  }) => {
     const { first, second, overview } = await customerWithTwoAccounts(page);
     const fromBefore = await overview.balanceOf(first);
     const toBefore = await overview.balanceOf(second);
@@ -38,7 +40,9 @@ test.describe('Transferring funds between own accounts', () => {
     expect(Number((fromBefore - fromAfter).toFixed(2))).toBe(25);
     expect(Number((toAfter - toBefore).toFixed(2))).toBe(25);
     // double entry: nothing is created or destroyed by a transfer
-    expect(Number((fromAfter + toAfter).toFixed(2))).toBe(Number((fromBefore + toBefore).toFixed(2)));
+    expect(Number((fromAfter + toAfter).toFixed(2))).toBe(
+      Number((fromBefore + toBefore).toFixed(2)),
+    );
   });
 
   test('an amount with cents is applied to the cent, not rounded', async ({ page }) => {
@@ -64,7 +68,9 @@ test.describe('Transferring funds between own accounts', () => {
     await transfer.transfer((available + 1000).toFixed(2), first, second);
 
     const result = await transfer.resultText();
-    expect(result, 'an overdrawn transfer must not report success').not.toMatch(/Transfer Complete/i);
+    expect(result, 'an overdrawn transfer must not report success').not.toMatch(
+      /Transfer Complete/i,
+    );
   });
 
   test('a negative amount is refused', async ({ page }) => {

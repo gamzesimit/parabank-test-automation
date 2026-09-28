@@ -2,9 +2,13 @@ import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class TransferFundsPage extends BasePage {
-  constructor(page: Page) { super(page); }
+  constructor(page: Page) {
+    super(page);
+  }
 
-  async goto() { await this.gotoStable('transfer.htm'); }
+  async goto() {
+    await this.gotoStable('transfer.htm');
+  }
 
   async transfer(amount: string, fromAccount: string, toAccount: string) {
     await this.page.fill('#amount', amount);

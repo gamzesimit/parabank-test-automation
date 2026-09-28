@@ -15,6 +15,7 @@ application is required to do instead, and why it matters in money terms.
 **Status:** Reproducible on every attempt
 
 **Steps**
+
 1. Register a new customer. The opening account holds 515.50.
 2. Go to Bill Pay.
 3. Fill in any payee and enter 1515.50 as the amount.
@@ -47,6 +48,7 @@ available balance must be refused".
 **Status:** Reproducible on every attempt
 
 **Steps**
+
 1. Register a new customer. The opening account holds 515.50.
 2. Go to Bill Pay.
 3. Enter -250.00 as the amount and send the payment.
@@ -77,6 +79,7 @@ amount must be refused, not credited".
 **Status:** Reproducible on every attempt
 
 **Steps**
+
 1. Register a new customer.
 2. Go to Transfer Funds.
 3. Enter -250.00 and submit.
@@ -107,6 +110,7 @@ must show an error".
 **Status:** Intermittent, measured
 
 **Steps**
+
 1. Register a new customer on `parabank.parasoft.com`.
 2. Go to Open New Account.
 

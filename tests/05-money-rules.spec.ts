@@ -5,11 +5,17 @@ import { BillPayPage } from '../pages/BillPayPage';
 import { TransferFundsPage } from '../pages/TransferFundsPage';
 import { buildUser } from '../fixtures/user';
 
+// These defects live on the server, so one engine is enough to show them and
+// three engines only multiply the noise when one of them behaves differently.
+test.describe.configure({ mode: 'serial' });
+
 /**
  * These tests state the rules a banking application is expected to keep.
  * The ones marked test.fail() are the rules this build breaks; each one
  * carries the defect id it belongs to in docs/defect-reports.md.
  */
+
+test.skip(({ browserName }) => browserName !== 'chromium', 'server side rules, checked once');
 
 async function newCustomer(page: any) {
   const register = new RegisterPage(page);
@@ -59,13 +65,16 @@ test.describe('Rules about the sign of an amount', () => {
     await transfer.goto();
     await transfer.transfer('-250.00', account, account);
     const result = await transfer.resultText();
-    expect(result, 'the form must tell the customer why nothing happened')
-      .toMatch(/invalid|must be|error|greater than/i);
+    expect(result, 'the form must tell the customer why nothing happened').toMatch(
+      /invalid|must be|error|greater than/i,
+    );
   });
 });
 
 test.describe('Rules that already hold', () => {
-  test('a payment inside the balance leaves the account by exactly that amount', async ({ page }) => {
+  test('a payment inside the balance leaves the account by exactly that amount', async ({
+    page,
+  }) => {
     const { overview, account } = await newCustomer(page);
     const before = await overview.balanceOf(account);
 

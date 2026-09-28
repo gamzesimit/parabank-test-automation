@@ -10,13 +10,16 @@
     "test": "playwright test",
     "report": "playwright show-report",
     "up": "docker compose up -d",
-    "down": "docker compose down"
+    "down": "docker compose down",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "description": "Playwright test suite for a retail online banking application, focused on the rules that protect the balance",
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "prettier": "^3.9.9"
   }
 }

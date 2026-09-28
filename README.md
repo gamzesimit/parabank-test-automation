@@ -33,13 +33,13 @@ npx playwright show-report
 
 ## What is covered
 
-| File | Area |
-|---|---|
-| `tests/01-registration.spec.ts` | Registration, sign out and back in, wrong password |
-| `tests/02-accounts.spec.ts` | Opening an account, funding deposit, overview total against the sum of rows |
-| `tests/03-transfers.spec.ts` | Transfer amounts, cents, above balance, negative, zero |
-| `tests/04-billpay.spec.ts` | A payment inside the balance leaves the account exactly |
-| `tests/05-money-rules.spec.ts` | The rules this build breaks, each tied to a defect id |
+| File                            | Area                                                                        |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| `tests/01-registration.spec.ts` | Registration, sign out and back in, wrong password                          |
+| `tests/02-accounts.spec.ts`     | Opening an account, funding deposit, overview total against the sum of rows |
+| `tests/03-transfers.spec.ts`    | Transfer amounts, cents, above balance, negative, zero                      |
+| `tests/04-billpay.spec.ts`      | A payment inside the balance leaves the account exactly                     |
+| `tests/05-money-rules.spec.ts`  | The rules this build breaks, each tied to a defect id                       |
 
 Fifteen tests. Three of them are marked as expected failures with `test.fail()`
 and carry the defect id they belong to, so the suite stays green while the

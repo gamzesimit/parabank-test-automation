@@ -14,7 +14,10 @@ export class BasePage {
   async gotoStable(path: string, attempts = 5) {
     for (let i = 0; i < attempts; i++) {
       await this.page.goto(path, { waitUntil: 'domcontentloaded' });
-      const body = await this.page.locator('#rightPanel').innerText().catch(() => '');
+      const body = await this.page
+        .locator('#rightPanel')
+        .innerText()
+        .catch(() => '');
       if (!INTERNAL_ERROR.test(body)) return;
     }
     throw new Error(`${path} returned the internal error page ${attempts} times in a row`);

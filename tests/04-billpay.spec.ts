@@ -18,7 +18,9 @@ test.describe('Paying a bill', () => {
     const billpay = new BillPayPage(page);
     await billpay.goto();
     await billpay.pay('37.45', account);
-    await expect(page.locator('#rightPanel')).toContainText(/Bill Payment .* Complete|Bill Payment to/i);
+    await expect(page.locator('#rightPanel')).toContainText(
+      /Bill Payment .* Complete|Bill Payment to/i,
+    );
 
     await overview.goto();
     const after = await overview.balanceOf(account);
