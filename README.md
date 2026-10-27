@@ -40,8 +40,10 @@ npx playwright show-report
 | `tests/03-transfers.spec.ts`    | Transfer amounts, cents, above balance, negative, zero                      |
 | `tests/04-billpay.spec.ts`      | A payment inside the balance leaves the account exactly                     |
 | `tests/05-money-rules.spec.ts`  | The rules this build breaks, each tied to a defect id                       |
+| `tests/06-loans.spec.ts`        | Loan decision, down payment leaving the funding account, refused amounts    |
+| `tests/07-find-transactions.spec.ts` | A payment found again by its amount, an amount never paid returns nothing |
 
-Fifteen tests. Three of them are marked as expected failures with `test.fail()`
+Twenty one tests, run on Chrome, Firefox and an iPhone profile. Four of them are marked as expected failures with `test.fail()`
 and carry the defect id they belong to, so the suite stays green while the
 defects stay visible. When a defect is fixed the mark is removed and the test
 turns into a regression guard.
@@ -65,11 +67,14 @@ hidden, so nobody later mistakes a retry for flakiness in the tests.
 it to answer, runs the suite on every push and pull request, and keeps the HTML
 report as an artifact for fourteen days.
 
-## Next steps
+## Same application, two tools
 
-- Cover the loan request and find transactions screens.
-- Cover the REST API, where the same amount rules can be checked without a browser.
-- Add Firefox and WebKit to the project list.
+The same ParaBank build is also tested with Selenium WebDriver in Java in
+[parabank-selenium-tests](https://github.com/gamzesimit/parabank-selenium-tests).
+Two suites on one target is deliberate: the money rules are written once as a
+risk and then expressed in both tools, so the difference between them is the
+tool and not the test design. The REST API side of the same rules lives in
+[banking-api-tests](https://github.com/gamzesimit/banking-api-tests).
 
 ## The smoke set
 
